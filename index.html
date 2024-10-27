@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+    <link rel="stylesheet" href="styles.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_GOOGLE_ANALYTICS_ID"></script>
+    <script>
+        // Настройка Google Analytics
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'YOUR_GOOGLE_ANALYTICS_ID');
+
+        // Функция для извлечения параметров UTM из URL
+        function getUTMParameters() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return {
+                utm_source: urlParams.get('utm_source'),
+                utm_medium: urlParams.get('utm_medium'),
+                utm_campaign: urlParams.get('utm_campaign')
+            };
+        }
+
+        // Отправка события в Google Analytics и редирект
+        function redirectToVK() {
+            const utm = getUTMParameters();
+            
+            // Отправка данных в Google Analytics
+            gtag('event', 'utm_redirect', {
+                'event_category': 'utm_tracking',
+                'event_label': 'VK Redirect',
+                'utm_source': utm.utm_source,
+                'utm_medium': utm.utm_medium,
+                'utm_campaign': utm.utm_campaign
+            });
+
+            // Редирект на сообщество ВК
+            setTimeout(() => {
+                window.location.href = "https://vk.com/algoritmika.voronezhsovet"; // Замените ссылку на вашу
+            }, 1500); // Даем 1.5 сек на отправку данных и анимацию
+        }
+
+        // Запуск редиректа при загрузке страницы
+        window.onload = redirectToVK;
+    </script>
+</head>
+<body>
+   <div class="container">
+        <div class="loading-spinner"></div>
+        <h1 class="redirect-message">Надеемся наша игра Вам понравилась!</h1>
+        <p class="redirect-subtext">Подождите, пожалуйста!</p>
+    </div>
+    </div>
+</body>
+</html>

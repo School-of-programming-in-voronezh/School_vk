@@ -1,0 +1,80 @@
+/* Основные стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #602A7A, #863BAA, #B86FDC, #B04DE0);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    text-align: center;
+}
+
+/* Контейнер */
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 90%;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.3);
+}
+
+/* Спиннер загрузки */
+.loading-spinner {
+    border: 8px solid rgba(255, 255, 255, 0.3);
+    border-top: 8px solid #fff;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Текст */
+.redirect-message {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.redirect-subtext {
+    font-size: 16px;
+    opacity: 0.8;
+}
+
+/* Адаптивность */
+@media (max-width: 600px) {
+    .redirect-message {
+        font-size: 20px;
+    }
+
+    .redirect-subtext {
+        font-size: 14px;
+    }
+
+    .loading-spinner {
+        width: 50px;
+        height: 50px;
+        border-width: 6px;
+    }
+}
