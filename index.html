@@ -25,15 +25,20 @@
 <script src="https://cors-anywhere.herokuapp.com/https://mc.yandex.ru/metrika/tag.js"></script>
     <script>
         // Отправка события в Яндекс.Метрику перед редиректом
-        function redirectToVK() {
-            ym(98741910, 'reachGoal', 'redirect_started'); // Добавляем событие в Яндекс.Метрику
+       function checkYandexMetrika() {
+    if (typeof ym === "function") {
+        console.log("Яндекс.Метрика загружена, выполняем редирект...");
+        ym(98741910, 'reachGoal', 'redirect_started'); // Отправка события
+        setTimeout(() => {
+            window.location.href = "https://vk.com/algoritmika.voronezhsovet"; // Редирект через 1.5 секунды
+        }, 1500);
+    } else {
+        console.log("Ждем загрузку Яндекс.Метрики...");
+        setTimeout(checkYandexMetrika, 100); // Проверяем снова через 100 мс
+    }
+}
 
-            setTimeout(() => {
-                window.location.href = "https://vk.com/algoritmika.voronezhsovet";
-            }, 10000); // Увеличиваем тайм-аут для отправки данных
-        }
-
-        window.onload = redirectToVK;
+window.onload = checkYandexMetrika;
     </script>
 </head>
 <body>
